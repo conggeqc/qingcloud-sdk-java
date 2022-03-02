@@ -42,7 +42,7 @@ jobs:
           
     - name: snips to  sdk 
       run: |
-          snips -f /home/runner/work/qingcloud-api-specs/2013-08-30/swagger/api_v2.0.json -t /home/runner/work/qingcloud-sdk-java/tmpl -o /home/runner/work/qingcloud-sdk-java/src/main/java/com/qingcloud/sdk/service/
+          snips -f /home/runner/work/qingcloud-api-specs/2013-08-30/swagger/api_v2.0.json -t /home/runner/work/qingcloud-sdk-java/qingcloud-sdk-java/tmpl -o /home/runner/work/qingcloud-sdk-java/qingcloud-sdk-java/src/main/java/com/qingcloud/sdk/service/
     - name: push sdk 
       run: |
           cd /home/runner/work/qingcloud-sdk-java/qingcloud-sdk-java/
