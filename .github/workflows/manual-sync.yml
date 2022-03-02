@@ -36,6 +36,7 @@ jobs:
             git config --global user.name "qingcloud-cps-robot"
     - name: fetch sdk
       run: |
+          git fetch
           git checkout feature/sync-api-specs-to-sdk
           git pull
     - name: fetch api specs
