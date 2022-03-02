@@ -27,6 +27,8 @@ jobs:
            wget https://github.com/qingstor/snips/releases/download/v0.3.6/snips-v0.3.6-linux_amd64.tar.gz
            tar -xvf snips-v0.3.6-linux_amd64.tar.gz
            cp snips /usr/local/bin/snips
+           rm snips-v0.3.6-linux_amd64.tar.gz
+           rm snips
     - name: prepare git info
       run: echo 'prepare git info'
     
@@ -34,13 +36,13 @@ jobs:
       run: |
           cd  /home/runner/work/ 
           git clone   https://github.com/conggeqc/qingcloud-api-specs 
-          ls -alth /home/runner/work/ 
-          ls -alth /home/runner/work/qingcloud-sdk-java
-          ls -alth /home/runner/work/qingcloud-sdk-java/qingcloud-sdk-java
+          ls -alth /home/runner/work/qingcloud-api-specs/2013-08-30/swagger/api_v2.0.json
+          ls -alth /home/runner/work/qingcloud-sdk-java/tmpl
+          ls -alth /home/runner/work/qingcloud-sdk-java/src/main/java/com/qingcloud/sdk/service
           
     - name: snips to  sdk 
       run: |
-           snips -f /home/runner/work/qingcloud-api-specs/2013-08-30/swagger/api_v2.0.json -t cd tmpl -o /home/runner/work/qingcloud-sdk-java/qingcloud-sdk-java/src/main/java/com/qingcloud/sdk/service/
+          snips -f /home/runner/work/qingcloud-api-specs/2013-08-30/swagger/api_v2.0.json -t /home/runner/work/qingcloud-sdk-java/tmpl -o /home/runner/work/qingcloud-sdk-java/src/main/java/com/qingcloud/sdk/service/
     - name: push sdk 
       run: |
           cd /home/runner/work/qingcloud-sdk-java/qingcloud-sdk-java/
