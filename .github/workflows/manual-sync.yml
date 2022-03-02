@@ -71,5 +71,5 @@ jobs:
           commit-message: create Pull requests by robot
           title: pr by robot
           body: create Pull requests from branch api-specs-sync by robot
-          branch: feature/sync-api-specs-to-sdk    
-          
+          branch: api-specs-sync
+          base: master
