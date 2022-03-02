@@ -38,7 +38,7 @@ jobs:
     - name: fetch api specs
       run: |
           cd  /home/runner/work/ 
-          git clone --single-branch --branch feature/sync-api-specs-to-sdk    https://github.com/conggeqc/qingcloud-api-specs 
+          git clone --single-branch --branch master    https://github.com/conggeqc/qingcloud-api-specs 
           ls -alth /home/runner/work/qingcloud-api-specs/2013-08-30/swagger/api_v2.0.json
           ls -alth /home/runner/work/qingcloud-sdk-java/qingcloud-sdk-java/tmpl
           ls -alth /home/runner/work/qingcloud-sdk-java/qingcloud-sdk-java/src/main/java/com/qingcloud/sdk/service
@@ -54,5 +54,5 @@ jobs:
           git status
           git diff-index --quiet HEAD || git commit --message "See ORIGIN_COMMIT from $GITHUB_REF"
           git config remote.origin.url "https://conggeqc:$API_TOKEN_GITHUB@github.com/congeqc/qingcloud-sdk-java.git"
-          git push origin feature/sync-api-specs-to-sdk  
-      
+          #git push origin feature/sync-api-specs-to-sdk  
+          git push --set-upstream origin feature/sync-api-specs-to-sdk  
