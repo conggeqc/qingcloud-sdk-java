@@ -65,3 +65,11 @@ jobs:
           git config remote.origin.url "https://conggeqc:$API_TOKEN_GITHUB@github.com/conggeqc/qingcloud-sdk-java.git"
           #git push origin feature/sync-api-specs-to-sdk  
           git push --set-upstream origin feature/sync-api-specs-to-sdk  
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v3
+      with:
+          commit-message: create Pull requests by robot
+          title: pr by robot
+          body: create Pull requests from branch api-specs-sync by robot
+          branch: api-specs-sync    
+          
