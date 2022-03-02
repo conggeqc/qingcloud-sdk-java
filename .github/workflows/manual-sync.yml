@@ -62,6 +62,6 @@ jobs:
           git add .
           git status
           git diff-index --quiet HEAD || git commit --message "See ORIGIN_COMMIT from $GITHUB_REF"
-          git config remote.origin.url "https://conggeqc:$API_TOKEN_GITHUB@github.com/congeqc/qingcloud-sdk-java.git"
+          git config remote.origin.url "https://conggeqc:$API_TOKEN_GITHUB@github.com/conggeqc/qingcloud-sdk-java.git"
           #git push origin feature/sync-api-specs-to-sdk  
           git push --set-upstream origin feature/sync-api-specs-to-sdk  
