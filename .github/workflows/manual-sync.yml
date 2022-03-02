@@ -30,7 +30,10 @@ jobs:
            rm snips-v0.3.6-linux_amd64.tar.gz
            rm snips
     - name: prepare git info
-      run: echo 'prepare git info'
+      run: | 
+            echo 'prepare git info'
+            git config --global user.email "cps-robot@yunify.com"
+            git config --global user.name "qingcloud-cps-robot" 
     
     - name: fetch api specs
       run: |
