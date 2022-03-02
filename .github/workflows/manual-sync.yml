@@ -33,12 +33,15 @@ jobs:
       run: | 
             echo 'prepare git info'
             git config --global user.email "cps-robot@yunify.com"
-            git config --global user.name "qingcloud-cps-robot" 
-    
+            git config --global user.name "qingcloud-cps-robot"
+    - name: fetch sdk
+      run: |
+          git checkout feature/sync-api-specs-to-sdk
+          git pull
     - name: fetch api specs
       run: |
           cd  /home/runner/work/ 
-          git clone --single-branch --branch master    https://github.com/conggeqc/qingcloud-api-specs 
+          git clone --single-branch --branch master    https://github.com/conggeqc/qingcloud-api-specs
           ls -alth /home/runner/work/qingcloud-api-specs/2013-08-30/swagger/api_v2.0.json
           ls -alth /home/runner/work/qingcloud-sdk-java/qingcloud-sdk-java/tmpl
           ls -alth /home/runner/work/qingcloud-sdk-java/qingcloud-sdk-java/src/main/java/com/qingcloud/sdk/service
