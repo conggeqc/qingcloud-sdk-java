@@ -38,7 +38,7 @@ jobs:
     - name: fetch api specs
       run: |
           cd  /home/runner/work/ 
-          git clone   https://github.com/conggeqc/qingcloud-api-specs 
+          git clone --single-branch --branch feature/sync-api-specs-to-sdk    https://github.com/conggeqc/qingcloud-api-specs 
           ls -alth /home/runner/work/qingcloud-api-specs/2013-08-30/swagger/api_v2.0.json
           ls -alth /home/runner/work/qingcloud-sdk-java/qingcloud-sdk-java/tmpl
           ls -alth /home/runner/work/qingcloud-sdk-java/qingcloud-sdk-java/src/main/java/com/qingcloud/sdk/service
