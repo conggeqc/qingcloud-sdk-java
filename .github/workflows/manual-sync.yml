@@ -13,13 +13,37 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "greet"
   greet:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Runs a single command using the runners shell
-    - name: Send greeting
-      run: echo "Hello ${{ github.event.inputs.name }}"
+    - uses: actions/checkout@v2
+      env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }} 
+    - name: install snips
+      run: |
+           wget https://github.com/qingstor/snips/releases/download/v0.3.6/snips-v0.3.6-linux_amd64.tar.gz
+           tar -xvf snips-v0.3.6-linux_amd64.tar.gz
+           cp snips /usr/local/bin/snips
+    - name: prepare git info
+      run: echo 'prepare git info'
+    
+    - name: fetch api specs
+      run: |
+          cd  /home/runner/work/ 
+          git clone   https://github.com/conggeqc/qingcloud-api-specs 
+    - name: snips to  sdk 
+      run: |
+           snips -f /home/runner/work/qingcloud-api-specs/2013-08-30/swagger/api_v2.0.json -t cd tmpl -o /home/runner/work/qingcloud-sdk-java/qingcloud-sdk-java/src/main/java/com/qingcloud/sdk/service/
+    - name: push sdk 
+      run: |
+          cd /home/runner/work/qingcloud-sdk-java/qingcloud-sdk-java/
+          date +%s > report.txt
+          git add .
+          git status
+          git diff-index --quiet HEAD || git commit --message "See ORIGIN_COMMIT from $GITHUB_REF"
+          git config remote.origin.url "https://conggeqc:$API_TOKEN_GITHUB@github.com/congeqc/qingcloud-sdk-java.git"
+          git push origin api-specs-sync  
+      
