@@ -34,7 +34,10 @@ jobs:
       run: |
           cd  /home/runner/work/ 
           git clone   https://github.com/conggeqc/qingcloud-api-specs 
-           ls -alth /home/runner/work/ 
+          ls -alth /home/runner/work/ 
+          ls -alth /home/runner/work/qingcloud-sdk-java
+          ls -alth /home/runner/work/qingcloud-sdk-java/qingcloud-sdk-java
+          
     - name: snips to  sdk 
       run: |
            snips -f /home/runner/work/qingcloud-api-specs/2013-08-30/swagger/api_v2.0.json -t cd tmpl -o /home/runner/work/qingcloud-sdk-java/qingcloud-sdk-java/src/main/java/com/qingcloud/sdk/service/
