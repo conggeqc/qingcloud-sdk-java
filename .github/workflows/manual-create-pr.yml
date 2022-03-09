@@ -5,9 +5,9 @@ name: Manual create PR workflow
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ master ]
+    branches: [ api-specs-sync ]
   pull_request:
-    branches: [ master ]
+    branches: [ api-specs-sync ]
   workflow_dispatch:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -19,6 +19,12 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: master
+      - name: Reset master branch
+        run: |
+          git fetch origin api-specs-sync:api-specs-sync
+          git reset --hard api-specs-sync    
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         env:
@@ -26,6 +32,6 @@ jobs:
         with:
           commit-message: create Pull requests by robot
           title: pr by robot
-          body: create Pull requests from branch api-specs-sync by robot
-          branch: api-specs-sync
-          base: master
+          body: create Pull requests from branch api-specs-sync by robot,Update master branch
+          branch: temp
+          #base: master
